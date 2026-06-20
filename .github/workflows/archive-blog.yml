@@ -11,18 +11,18 @@ permissions:
 jobs:
   archive-task:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Run Archive
+      - name: Download Archive
         run: |
           wget -m -k -E -p -e robots=off https://walidcumo08-ahvpy.wordpress.com/
 
-      - name: Commit and push changes
+      - name: Commit and Push Archive
         run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
           git add .
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-archive full blog" && git push)
+          git commit -m "Automated blog archive update"
+          git push
